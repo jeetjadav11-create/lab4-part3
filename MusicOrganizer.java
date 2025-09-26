@@ -62,6 +62,16 @@ public class MusicOrganizer
         }
     }
     
+    public void listWithIndex()
+    {
+        int position = 0;
+        for(String filename : files) {
+        System.out.println(position+":"+filename);
+        position++;
+        }
+        
+    }
+    
     /**
      * Remove a file from the collection.
      * @param index The index of the file to be removed.
@@ -131,4 +141,47 @@ public class MusicOrganizer
         }
         return valid;
     }
+    
+    /**
+    * List the names of files that contain the given search string.
+    * The match is case-sensitive; use toLowerCase() on both sides
+    * if you want case-insensitive matching.
+    */
+    public void listMatching(String searchString)
+    {
+    boolean foundAny = false;
+
+    for (String filename : files) {
+        if (filename.contains(searchString)) {
+            System.out.println(filename);
+            foundAny = true;
+        }
+    }
+
+    if (!foundAny) {
+        System.out.println("No files matched: \"" + searchString + "\"");
+    }
+    }
+    
+    public void playArtistSamples(String artist)
+{
+    boolean foundAny = false;
+    String target = artist.toLowerCase();
+
+    for (String filename : files) {
+        if (filename.toLowerCase().contains(target)) {
+            player.playSample(filename);
+            foundAny = true;
+        }
+    }
+
+    if (!foundAny) {
+        System.out.println("No files found for artist: " + artist);
+    }
+}
+
+    
+    
+    
+    
 }
